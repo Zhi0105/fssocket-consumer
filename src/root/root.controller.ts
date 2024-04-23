@@ -5,6 +5,6 @@ export class RootController {
 
   @Get('')
   root() {
-    return "FS Analytics API"
+    return "FS Analytics Service"
   }
 }
