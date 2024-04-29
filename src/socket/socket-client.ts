@@ -30,6 +30,7 @@ export class SocketClientConnection implements OnModuleInit{
         console.log("can't saved session data without logs")
       } else {
         return this.analytics.addAnalytics(dto)
+        // console.log(dto)
         
       }
     })
