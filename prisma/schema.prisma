@@ -9,12 +9,32 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
+model Action {
+  action_type Int      @id @default(autoincrement())
+  description String
+  name        String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
+
+  logs Log[]
+
+  @@map("actions")
+}
+
 model Log {
-  id        Int      @id @default(autoincrement())
-  session   String   @unique
-  data      Json
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
+  action_tracking_id Int       @id @default(autoincrement())
+  session_id         String    @unique
+  action_type        Int
+  param1             String
+  param2             String?
+  param3             String?
+  param4             String?
+  param5             String?
+  param6             DateTime?
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @default(now())
+
+  action Action @relation(fields: [action_type], references: [action_type])
 
   @@map("logs")
 }
